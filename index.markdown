@@ -1,29 +1,40 @@
-Mit diesen Aufgaben möchte ich die Grundlegende Syntax von funktionalen Elementen in Java einüben.
+Mit diesen Aufgaben möchte ich die Grundlegende Syntax von reaktiver Programmierung in Java einüben.
 Hierbei geht es nur darum, die richtige Reihenfolge der Codeblöcke zu finden.
 Zieht dafür einfach die Elemente aus dem Aufgabenbereich in den Lösungsbereich und prüft Eure Antwort.
 Beachtet, dass meist nicht alle Elemente notwendig sind.
 Zudem ist es wichtig, dass alle Elemente linksbündig sind!
 
 ##  Aufgabe 1
-Sortiert die Elemente so, dass alle Einträge der ursprünglichen Liste quadriert werden.
+In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste ein `Flux` erzeugt werden. Anschließend soll für alle Werte, die kleiner als 10 sind, der Kehrwert berechnet werden. Falls sich eine 0 in der Liste befindet, soll ein Fehler ausgelöst werden.
 
-<div id="A1-sortableTrash" class="sortable-code"></div> 
-<div id="A1-sortable" class="sortable-code"></div> 
+
+<div id="Task1-sortableTrash" class="sortable-code"></div> 
+<div id="Task1-sortable" class="sortable-code"></div> 
 <div style="clear:both;"></div> 
 <p> 
-    <input id="A1-feedbackLink" value="Get Feedback" type="button" /> 
-    <input id="A1-newInstanceLink" value="Reset Problem" type="button" /> 
+    <input id="Task1-feedbackLink" value="Get Feedback" type="button" /> 
+    <input id="Task1-newInstanceLink" value="Reset Problem" type="button" /> 
 </p> 
 <script type="text/javascript"> 
 (function(){
-  var initial = "List&lt;Integer&gt; neueListeMitZahlen1 = listeMitZahlen\n" +
-    ".stream()\n" +
-    ".map(z -> z * z)\n" +
-    ".toList();\n" +
-    ".iterate() #distractor\n" +
-    ".map(z = z * z) #distractor";
+  var initial = "Flux.fromIterable(List.of(5,15,3,0,17,-1))\n" +
+    ".filter(i -&gt; i &lt; 10)\n" +
+    ".map(i-&gt;  {\n" +
+    "if (i == 0) {throw new IllegalArgumentException(&quot;Division by zero!&quot;);}\n" +
+    "return (double) 1/i;}\n" +
+    ")\n" +
+    ".subscribe(\n" +
+    "i -&gt; System.out.print(i + &quot;,&quot;),\n" +
+    "err -&gt; System.err.println(err.toString())\n" +
+    ");\n" +
+    ".filter(i -&gt; i &gt;= 10) #distractor\n" +
+    "return 1/i;} #distractor\n" +
+    ".map(list -&gt; { #distractor\n" +
+    "for(int i: list){ #distractor\n" +
+    "} #distractor\n" +
+    "Flux.just(List.of(5,15,3,0,17,-1)) #distractor";
   var parsonsPuzzle = new ParsonsWidget({
-    "sortableId": "A1-sortable",
+    "sortableId": "Task1-sortable",
     "max_wrong_lines": 10,
     "grader": ParsonsWidget._graders.LineBasedGrader,
     "exec_limit": 2500,
@@ -31,15 +42,15 @@ Sortiert die Elemente so, dass alle Einträge der ursprünglichen Liste quadrier
     "x_indent": 50,
     "lang": "en",
     "show_feedback": true,
-    "trashId": "A1-sortableTrash"
+    "trashId": "Task1-sortableTrash"
   });
   parsonsPuzzle.init(initial);
   parsonsPuzzle.shuffleLines();
-  $("#A1-newInstanceLink").click(function(event){ 
+  $("#Task1-newInstanceLink").click(function(event){ 
       event.preventDefault(); 
       parsonsPuzzle.shuffleLines(); 
   }); 
-  $("#A1-feedbackLink").click(function(event){ 
+  $("#Task1-feedbackLink").click(function(event){ 
       event.preventDefault(); 
       parsonsPuzzle.getFeedback(); 
   }); 
@@ -271,7 +282,6 @@ Dabei sollen zuvor alle Werte über 100 mit dem Faktor 0.8 multipliziert werden.
   }); 
 })(); 
 </script>
-
 
 
 
