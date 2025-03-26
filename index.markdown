@@ -60,25 +60,31 @@ In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste ein `F
 ## Aufgabe 2
 
 Sortiert die Elemente so, dass alle Einträge entfernt werden, die größer oder gleich 100 sind.
-
-
-<div id="A2-sortableTrash" class="sortable-code"></div> 
-<div id="A2-sortable" class="sortable-code"></div> 
+<div id="Task2-sortableTrash" class="sortable-code"></div> 
+<div id="Task2-sortable" class="sortable-code"></div> 
 <div style="clear:both;"></div> 
 <p> 
-    <input id="A2-feedbackLink" value="Get Feedback" type="button" /> 
-    <input id="A2-newInstanceLink" value="Reset Problem" type="button" /> 
+    <input id="Task2-feedbackLink" value="Get Feedback" type="button" /> 
+    <input id="Task2-newInstanceLink" value="Reset Problem" type="button" /> 
 </p> 
 <script type="text/javascript"> 
 (function(){
-  var initial = "List&lt;Integer&gt; neueListeMitZahlen2 = listeMitZahlen\n" +
-    ".stream()\n" +
-    ".filter(z -&gt; z &lt; 100)\n" +
-    ".toList();\n" +
-    ".filter(z -&gt; z + 100) #distractor\n" +
-    ".filter(z -&gt; z &gt;= 100) #distractor";
+  var initial = "Instant cutoff = Instant.parse(&quot;2025-01-01T00:00:00Z&quot;);\n" +
+    "Flux.fromIterable(List.of(5,15,3,17))\n" +
+    ".flatMap(id-&gt;  webClient.get()\n" +
+    ".uri(&quot;/ratings/{id}&quot;, id)\n" +
+    ".retrieve()\n" +
+    ".bodyToMono(RatingResponseDTO.class)\n" +
+    ")\n" +
+    ".filter(ratingResponseDTO -&gt; ratingResponseDTO.getDate().toInstant().isBefore(cutoff))\n" +
+    ".map(rating -&gt; rating.getRating() * 20)\n" +
+    ".subscribe(\n" +
+    "res -&gt; System.out.print(res + &quot;,&quot;),\n" +
+    "err -&gt; System.err.println(err.toString()));\n" +
+    ".flatMap(rating -&gt; rating.getRating() * 20) #distractor\n" +
+    ".map(id-&gt;  webClient.get() #distractor";
   var parsonsPuzzle = new ParsonsWidget({
-    "sortableId": "A2-sortable",
+    "sortableId": "Task2-sortable",
     "max_wrong_lines": 10,
     "grader": ParsonsWidget._graders.LineBasedGrader,
     "exec_limit": 2500,
@@ -86,15 +92,15 @@ Sortiert die Elemente so, dass alle Einträge entfernt werden, die größer oder
     "x_indent": 50,
     "lang": "en",
     "show_feedback": true,
-    "trashId": "A2-sortableTrash"
+    "trashId": "Task2-sortableTrash"
   });
   parsonsPuzzle.init(initial);
   parsonsPuzzle.shuffleLines();
-  $("#A2-newInstanceLink").click(function(event){ 
+  $("#Task2-newInstanceLink").click(function(event){ 
       event.preventDefault(); 
       parsonsPuzzle.shuffleLines(); 
   }); 
-  $("#A2-feedbackLink").click(function(event){ 
+  $("#Task2-feedbackLink").click(function(event){ 
       event.preventDefault(); 
       parsonsPuzzle.getFeedback(); 
   }); 
