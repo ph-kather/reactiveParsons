@@ -59,7 +59,8 @@ In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste ein `F
 
 ## Aufgabe 2
 
-Sortiert die Elemente so, dass alle Einträge entfernt werden, die größer oder gleich 100 sind.
+In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste von IDs ein `Flux` erzeugt werden und mehrere Rating-Objekte abgefragt werden. Anschließend sollen nur die Bewertungen berücksichtigt werden, deren Zeitstempel vor dem Stichtag 01.01.2025 liegt. Diese gefilterten Bewertungen sollen anschließend zur Normierung mit dem Faktor *20* multipliziert und ausgegeben werden.
+
 <div id="Task2-sortableTrash" class="sortable-code"></div> 
 <div id="Task2-sortable" class="sortable-code"></div> 
 <div style="clear:both;"></div> 
