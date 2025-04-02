@@ -20,7 +20,6 @@ In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste ein `F
   var initial = "Flux.fromIterable(List.of(5,15,3,0,17,-1))\n" +
     ".filter(i -&gt; i &lt; 10)\n" +
     ".map(i-&gt;  {\n" +
-    "if (i == 0) {throw new IllegalArgumentException(&quot;Division by zero!&quot;);}\n" +
     "return (double) 1/i;}\n" +
     ")\n" +
     ".subscribe(\n" +
