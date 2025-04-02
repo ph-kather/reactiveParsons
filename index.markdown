@@ -5,7 +5,7 @@ Beachtet, dass meist nicht alle Elemente notwendig sind.
 Zudem ist es wichtig, dass alle Elemente linksbündig sind!
 
 ##  Aufgabe 1
-In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste ein `Flux` erzeugt werden. Anschließend soll für alle Werte, die kleiner als 10 sind, der Kehrwert berechnet werden. Falls sich eine 0 in der Liste befindet, soll ein Fehler ausgelöst werden.
+In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste ein `Flux` erzeugt werden. Anschließend soll für alle Werte, die kleiner als 10 sind, der Kehrwert berechnet werden. 
 
 
 <div id="Task1-sortableTrash" class="sortable-code"></div> 
@@ -60,7 +60,7 @@ In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste ein `F
 
 ## Aufgabe 2
 
-In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste von IDs ein `Flux` erzeugt werden und mehrere Rating-Objekte abgefragt werden. Anschließend sollen nur die Bewertungen berücksichtigt werden, deren Zeitstempel vor dem Stichtag 01.01.2025 liegt. Diese gefilterten Bewertungen sollen anschließend zur Normierung mit dem Faktor *20* multipliziert und ausgegeben werden.
+In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste von IDs ein `Flux` erzeugt werden und mehrere Rating-Objekte abgefragt werden. Diese Bewertungen sollen anschließend zur Normierung mit dem Faktor *20* multipliziert und ausgegeben werden.
 
 <div id="Task2-sortableTrash" class="sortable-code"></div> 
 <div id="Task2-sortable" class="sortable-code"></div> 
@@ -71,14 +71,12 @@ In der folgenden Aufgabe soll – analog zum Beispiel – aus einer Liste von ID
 </p> 
 <script type="text/javascript"> 
 (function(){
-  var initial = "Instant cutoff = Instant.parse(&quot;2025-01-01T00:00:00Z&quot;);\n" +
-    "Flux.fromIterable(List.of(5,15,3,17))\n" +
+  var initial = "Flux.fromIterable(List.of(5,15,3,17))\n" +
     ".flatMap(id-&gt;  webClient.get()\n" +
     ".uri(&quot;/ratings/{id}&quot;, id)\n" +
     ".retrieve()\n" +
     ".bodyToMono(RatingResponseDTO.class)\n" +
     ")\n" +
-    ".filter(ratingResponseDTO -&gt; ratingResponseDTO.getDate().toInstant().isBefore(cutoff))\n" +
     ".map(rating -&gt; rating.getRating() * 20)\n" +
     ".subscribe(\n" +
     "res -&gt; System.out.print(res + &quot;,&quot;),\n" +
